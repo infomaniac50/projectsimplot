@@ -1,0 +1,4 @@
+syntax: glob
+SimPlot/bin/*
+SimPlot/obj/*
+SimPlot/publish/*
