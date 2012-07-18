@@ -68,6 +68,54 @@
 
         End If
 
+
+
+        ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+        ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+        'Serial port loop back test. Transmitting a packet that is meant to be looped back into serial port. 
+        'Short the Tx pin to Rx pin externally.
+
+        Dim txBuffer(100) As Byte
+        Dim byteArray As Byte()
+        Static Dim ANGLE As Double = 0
+
+        txBuffer(0) = &HAB      'Header byte1
+        txBuffer(1) = &HCD      'Header byte2
+        txBuffer(2) = 6         'Packet size high byte
+        txBuffer(3) = 0         'Packet side low byte
+
+        ANGLE += Math.PI / 53
+
+        byteArray = BitConverter.GetBytes(CShort(100 * Math.Cos(ANGLE)))
+        txBuffer(4) = byteArray(0)
+        txBuffer(5) = byteArray(1)
+
+        byteArray = BitConverter.GetBytes(CShort(100 * Math.Sin(ANGLE)))
+        txBuffer(6) = byteArray(0)
+        txBuffer(7) = byteArray(1)
+
+        byteArray = BitConverter.GetBytes(CShort(100 * Math.Sin(ANGLE) / 2))
+        txBuffer(8) = byteArray(0)
+        txBuffer(9) = byteArray(1)
+
+
+        If connectDisconnectButton.Text = "Disconnect" Then
+
+            SerialPort1.Write(txBuffer, 0, (2 + 2 + 6))
+
+            If (tickCount Mod 10 = 0) Then
+                SerialPort1.WriteLine("hello")
+            End If
+        End If
+
+
+
+
+        ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+        ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+
+
         ' '''''''''''''''Simulating data '''''''''''''''''''''''
         'Static Dim ANGLE As Double = 0
 
@@ -157,11 +205,22 @@
                 Next
             End While
 
-
             Chart1.Series.ResumeUpdates()
             ' Adjust Y & X axis scale
             Chart1.ResetAutoValues()
 
+            ''House keeping jobs perform periodically but at low frequency
+            If (tickCount Mod 10 = 0) Then
+                If (TerminalWindow.Lines.Length > 2100) Then
+                    Array.Resize(TerminalWindow.Lines, 2000)
+                    TerminalWindow.AppendText(vbNewLine)
+                End If
+                If (textBox.Lines.Length > 2100) Then
+                    Array.Resize(textBox.Lines, 2000)
+                    textBox.AppendText(vbNewLine)
+                End If
+
+            End If
         End If
 
     End Sub
@@ -216,7 +275,7 @@
     Private Function parseData() As Boolean
         Dim tempByte As Byte
         Static Dim tempBuf(2) As Byte
-        Static Dim asciBuf As New ArrayList
+        Static Dim asciBuf As New List(Of String)
 
         Dim byteCount As Integer = 0
 
@@ -236,7 +295,7 @@
                     If tempByte = &HAB Then
                         parseState = ParseState_MC.HEADER1
                     Else
-                        asciBuf.Add(CStr(tempByte))
+                        asciBuf.Add(CChar(ChrW(tempByte)))
                         parseState = ParseState_MC.IDLE
                     End If
 
@@ -247,7 +306,7 @@
                     If tempByte = &HCD Then
                         parseState = ParseState_MC.HEADER2
                     Else
-                        asciBuf.Add(CStr(tempByte))
+                        asciBuf.Add(CChar(ChrW(tempByte)))
                         parseState = ParseState_MC.IDLE
                     End If
 
@@ -291,7 +350,10 @@
         'tempstr = String.Join("", CType(asciBuf.ToArray(GetType(String)), String()))
         'textBox.AppendText(tempstr)
         'textBox.AppendText(tempstr)
+        Dim text As String = String.Join("", asciBuf)
+        TerminalWindow.AppendText(text)
         asciBuf.Clear()
+
         If pointsArray.Count > 0 Then
             Return True
         Else

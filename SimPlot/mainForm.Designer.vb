@@ -23,12 +23,12 @@ Partial Class mainForm
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim ChartArea1 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
-        Dim Legend1 As System.Windows.Forms.DataVisualization.Charting.Legend = New System.Windows.Forms.DataVisualization.Charting.Legend()
-        Dim Series1 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
-        Dim Series2 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
-        Dim Series3 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
-        Dim Series4 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
+        Dim ChartArea2 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
+        Dim Legend2 As System.Windows.Forms.DataVisualization.Charting.Legend = New System.Windows.Forms.DataVisualization.Charting.Legend()
+        Dim Series5 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
+        Dim Series6 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
+        Dim Series7 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
+        Dim Series8 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.Chart1 = New System.Windows.Forms.DataVisualization.Charting.Chart()
@@ -45,6 +45,8 @@ Partial Class mainForm
         Me.ToolStripStatusLabel2 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.ToolStripStatusLabel_Version = New System.Windows.Forms.ToolStripStatusLabel()
         Me.SerialPort1 = New System.IO.Ports.SerialPort(Me.components)
+        Me.SplitContainer2 = New System.Windows.Forms.SplitContainer()
+        Me.TerminalWindow = New System.Windows.Forms.RichTextBox()
         Me.TableLayoutPanel1.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
@@ -53,6 +55,10 @@ Partial Class mainForm
         CType(Me.Chart1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.FlowLayoutPanel1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
+        CType(Me.SplitContainer2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SplitContainer2.Panel1.SuspendLayout()
+        Me.SplitContainer2.Panel2.SuspendLayout()
+        Me.SplitContainer2.SuspendLayout()
         Me.SuspendLayout()
         '
         'TableLayoutPanel1
@@ -64,7 +70,7 @@ Partial Class mainForm
         Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 0)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
-        Me.TableLayoutPanel1.RowCount = 2
+        Me.TableLayoutPanel1.RowCount = 3
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.128205!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 94.8718!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
@@ -75,79 +81,82 @@ Partial Class mainForm
         '
         'SplitContainer1
         '
+        Me.SplitContainer1.BackColor = System.Drawing.SystemColors.Window
         Me.SplitContainer1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.SplitContainer1.Location = New System.Drawing.Point(3, 34)
+        Me.SplitContainer1.Location = New System.Drawing.Point(3, 33)
         Me.SplitContainer1.Name = "SplitContainer1"
         Me.SplitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal
         '
         'SplitContainer1.Panel1
         '
+        Me.SplitContainer1.Panel1.BackColor = System.Drawing.SystemColors.Window
         Me.SplitContainer1.Panel1.Controls.Add(Me.Chart1)
         '
         'SplitContainer1.Panel2
         '
-        Me.SplitContainer1.Panel2.Controls.Add(Me.textBox)
-        Me.SplitContainer1.Size = New System.Drawing.Size(1028, 587)
-        Me.SplitContainer1.SplitterDistance = 443
+        Me.SplitContainer1.Panel2.BackColor = System.Drawing.SystemColors.Window
+        Me.SplitContainer1.Panel2.Controls.Add(Me.SplitContainer2)
+        Me.SplitContainer1.Size = New System.Drawing.Size(1028, 567)
+        Me.SplitContainer1.SplitterDistance = 427
         Me.SplitContainer1.TabIndex = 0
         '
         'Chart1
         '
-        ChartArea1.AxisX.LineColor = System.Drawing.Color.Silver
-        ChartArea1.AxisX.MajorGrid.LineColor = System.Drawing.Color.Gainsboro
-        ChartArea1.AxisX.MajorTickMark.LineColor = System.Drawing.Color.Gainsboro
-        ChartArea1.AxisX.MinorTickMark.Enabled = True
-        ChartArea1.AxisX.MinorTickMark.LineColor = System.Drawing.Color.Gainsboro
-        ChartArea1.AxisY.LineColor = System.Drawing.Color.Silver
-        ChartArea1.AxisY.MajorGrid.LineColor = System.Drawing.Color.Gainsboro
-        ChartArea1.AxisY.MajorTickMark.LineColor = System.Drawing.Color.Gainsboro
-        ChartArea1.AxisY.MinorTickMark.Enabled = True
-        ChartArea1.AxisY.MinorTickMark.LineColor = System.Drawing.Color.Gainsboro
-        ChartArea1.BackColor = System.Drawing.Color.Black
-        ChartArea1.Name = "ChartArea1"
-        Me.Chart1.ChartAreas.Add(ChartArea1)
+        ChartArea2.AxisX.LineColor = System.Drawing.Color.Silver
+        ChartArea2.AxisX.MajorGrid.LineColor = System.Drawing.Color.Gainsboro
+        ChartArea2.AxisX.MajorTickMark.LineColor = System.Drawing.Color.Gainsboro
+        ChartArea2.AxisX.MinorTickMark.Enabled = True
+        ChartArea2.AxisX.MinorTickMark.LineColor = System.Drawing.Color.Gainsboro
+        ChartArea2.AxisY.LineColor = System.Drawing.Color.Silver
+        ChartArea2.AxisY.MajorGrid.LineColor = System.Drawing.Color.Gainsboro
+        ChartArea2.AxisY.MajorTickMark.LineColor = System.Drawing.Color.Gainsboro
+        ChartArea2.AxisY.MinorTickMark.Enabled = True
+        ChartArea2.AxisY.MinorTickMark.LineColor = System.Drawing.Color.Gainsboro
+        ChartArea2.BackColor = System.Drawing.Color.Black
+        ChartArea2.Name = "ChartArea1"
+        Me.Chart1.ChartAreas.Add(ChartArea2)
         Me.Chart1.Dock = System.Windows.Forms.DockStyle.Fill
-        Legend1.Name = "Legend1"
-        Me.Chart1.Legends.Add(Legend1)
+        Legend2.Name = "Legend1"
+        Me.Chart1.Legends.Add(Legend2)
         Me.Chart1.Location = New System.Drawing.Point(0, 0)
         Me.Chart1.Name = "Chart1"
-        Series1.BorderWidth = 2
-        Series1.ChartArea = "ChartArea1"
-        Series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine
-        Series1.Color = System.Drawing.Color.Yellow
-        Series1.Legend = "Legend1"
-        Series1.Name = "Channel 1"
-        Series1.ShadowColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
-        Series1.ShadowOffset = 1
-        Series2.BorderWidth = 2
-        Series2.ChartArea = "ChartArea1"
-        Series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine
-        Series2.Color = System.Drawing.Color.LawnGreen
-        Series2.Legend = "Legend1"
-        Series2.Name = "Channel 2"
-        Series2.ShadowColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
-        Series2.ShadowOffset = 1
-        Series3.BorderWidth = 2
-        Series3.ChartArea = "ChartArea1"
-        Series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine
-        Series3.Color = System.Drawing.Color.Aqua
-        Series3.Legend = "Legend1"
-        Series3.Name = "Channel 3"
-        Series3.ShadowColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
-        Series3.ShadowOffset = 1
-        Series4.BorderWidth = 2
-        Series4.ChartArea = "ChartArea1"
-        Series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine
-        Series4.Color = System.Drawing.Color.Magenta
-        Series4.Legend = "Legend1"
-        Series4.Name = "Channel 4"
-        Series4.ShadowColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
-        Series4.ShadowOffset = 1
-        Me.Chart1.Series.Add(Series1)
-        Me.Chart1.Series.Add(Series2)
-        Me.Chart1.Series.Add(Series3)
-        Me.Chart1.Series.Add(Series4)
-        Me.Chart1.Size = New System.Drawing.Size(1028, 443)
+        Series5.BorderWidth = 2
+        Series5.ChartArea = "ChartArea1"
+        Series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine
+        Series5.Color = System.Drawing.Color.Yellow
+        Series5.Legend = "Legend1"
+        Series5.Name = "Channel 1"
+        Series5.ShadowColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
+        Series5.ShadowOffset = 1
+        Series6.BorderWidth = 2
+        Series6.ChartArea = "ChartArea1"
+        Series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine
+        Series6.Color = System.Drawing.Color.LawnGreen
+        Series6.Legend = "Legend1"
+        Series6.Name = "Channel 2"
+        Series6.ShadowColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
+        Series6.ShadowOffset = 1
+        Series7.BorderWidth = 2
+        Series7.ChartArea = "ChartArea1"
+        Series7.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine
+        Series7.Color = System.Drawing.Color.Aqua
+        Series7.Legend = "Legend1"
+        Series7.Name = "Channel 3"
+        Series7.ShadowColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
+        Series7.ShadowOffset = 1
+        Series8.BorderWidth = 2
+        Series8.ChartArea = "ChartArea1"
+        Series8.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine
+        Series8.Color = System.Drawing.Color.Magenta
+        Series8.Legend = "Legend1"
+        Series8.Name = "Channel 4"
+        Series8.ShadowColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
+        Series8.ShadowOffset = 1
+        Me.Chart1.Series.Add(Series5)
+        Me.Chart1.Series.Add(Series6)
+        Me.Chart1.Series.Add(Series7)
+        Me.Chart1.Series.Add(Series8)
+        Me.Chart1.Size = New System.Drawing.Size(1028, 427)
         Me.Chart1.TabIndex = 0
         Me.Chart1.Text = "-+"
         '
@@ -155,8 +164,9 @@ Partial Class mainForm
         '
         Me.textBox.Dock = System.Windows.Forms.DockStyle.Fill
         Me.textBox.Location = New System.Drawing.Point(0, 0)
+        Me.textBox.MaxLength = 100000
         Me.textBox.Name = "textBox"
-        Me.textBox.Size = New System.Drawing.Size(1028, 140)
+        Me.textBox.Size = New System.Drawing.Size(320, 136)
         Me.textBox.TabIndex = 0
         Me.textBox.Text = ""
         '
@@ -169,7 +179,7 @@ Partial Class mainForm
         Me.FlowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.FlowLayoutPanel1.Location = New System.Drawing.Point(3, 3)
         Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
-        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(1028, 25)
+        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(1028, 24)
         Me.FlowLayoutPanel1.TabIndex = 1
         '
         'comPortComboBox
@@ -203,7 +213,7 @@ Partial Class mainForm
         'plotSetupBtn
         '
         Me.plotSetupBtn.Location = New System.Drawing.Point(286, 2)
-        Me.plotSetupBtn.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.plotSetupBtn.Margin = New System.Windows.Forms.Padding(2)
         Me.plotSetupBtn.Name = "plotSetupBtn"
         Me.plotSetupBtn.Size = New System.Drawing.Size(79, 19)
         Me.plotSetupBtn.TabIndex = 15
@@ -226,7 +236,7 @@ Partial Class mainForm
         'ToolStripStatusLabel1
         '
         Me.ToolStripStatusLabel1.Name = "ToolStripStatusLabel1"
-        Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(54, 20)
+        Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(63, 20)
         Me.ToolStripStatusLabel1.Text = "Timer Tick"
         '
         'TimerTickLabel
@@ -254,6 +264,35 @@ Partial Class mainForm
         '
         Me.SerialPort1.PortName = "COM10"
         '
+        'SplitContainer2
+        '
+        Me.SplitContainer2.AccessibleDescription = "Vertical Split for Text boxes"
+        Me.SplitContainer2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.SplitContainer2.Location = New System.Drawing.Point(0, 0)
+        Me.SplitContainer2.Name = "SplitContainer2"
+        '
+        'SplitContainer2.Panel1
+        '
+        Me.SplitContainer2.Panel1.Controls.Add(Me.TerminalWindow)
+        '
+        'SplitContainer2.Panel2
+        '
+        Me.SplitContainer2.Panel2.Controls.Add(Me.textBox)
+        Me.SplitContainer2.Size = New System.Drawing.Size(1028, 136)
+        Me.SplitContainer2.SplitterDistance = 704
+        Me.SplitContainer2.TabIndex = 0
+        '
+        'TerminalWindow
+        '
+        Me.TerminalWindow.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TerminalWindow.Font = New System.Drawing.Font("Consolas", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TerminalWindow.Location = New System.Drawing.Point(0, 0)
+        Me.TerminalWindow.MaxLength = 1000000
+        Me.TerminalWindow.Name = "TerminalWindow"
+        Me.TerminalWindow.Size = New System.Drawing.Size(704, 136)
+        Me.TerminalWindow.TabIndex = 0
+        Me.TerminalWindow.Text = ""
+        '
         'mainForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -272,6 +311,10 @@ Partial Class mainForm
         Me.FlowLayoutPanel1.ResumeLayout(False)
         Me.StatusStrip1.ResumeLayout(False)
         Me.StatusStrip1.PerformLayout()
+        Me.SplitContainer2.Panel1.ResumeLayout(False)
+        Me.SplitContainer2.Panel2.ResumeLayout(False)
+        CType(Me.SplitContainer2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.SplitContainer2.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -292,5 +335,7 @@ Partial Class mainForm
     Friend WithEvents ToolStripStatusLabel2 As System.Windows.Forms.ToolStripStatusLabel
     Friend WithEvents ToolStripStatusLabel_Version As System.Windows.Forms.ToolStripStatusLabel
     Friend WithEvents plotSetupBtn As System.Windows.Forms.Button
+    Friend WithEvents SplitContainer2 As System.Windows.Forms.SplitContainer
+    Friend WithEvents TerminalWindow As System.Windows.Forms.RichTextBox
 
 End Class
